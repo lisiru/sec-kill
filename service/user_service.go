@@ -15,6 +15,7 @@ type UserService interface {
 	Update(ctx context.Context, user *model.User) error
 	Get(ctx context.Context, username string) (*model.User, error)
 	List(ctx context.Context) (*model.UserList, error)
+	SendPhoneCode(ctx context.Context,phone string) bool
 
 
 }
@@ -59,5 +60,9 @@ func (u *userService) List(ctx context.Context) (*model.UserList,error)  {
 		return nil,errors.WithCode(code.ErrDatabase,err.Error())
 	}
 	return users,nil
+}
+
+func (u *userService) SendPhoneCode(ctx context.Context,phone string) bool  {
+
 }
 
