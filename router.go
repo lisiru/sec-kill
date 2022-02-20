@@ -39,6 +39,7 @@ func installController(g *gin.Engine) *gin.Engine {
 			userController := user.NewUserController(storeInstance, cacheInstance)
 			userv1.GET(":name", userController.GetUser)
 			userv1.POST("/sendPhoneCode",userController.SendPhoneCode)
+			userv1.POST("/login",userController.LoginByPhoneCode)
 		}
 	}
 	return g

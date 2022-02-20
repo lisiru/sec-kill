@@ -39,15 +39,27 @@ func (u *users) Get(ctx context.Context, username string) (*model.User, error) {
 	return user, nil
 }
 
+func (u *users) GetUserByWhere(ctx context.Context,where map[string]interface{}) (*model.User,error)  {
+	user:=&model.User{}
+	err:=u.db.Where(where).First(&user).Error
+	if err !=nil {
+		if errors.Is(err,gorm.ErrRecordNotFound) {
+			return nil, errors.WithCode(code.ErrUserNotFound,err.Error())
+		}
+		return nil,errors.WithCode(code.ErrDatabase,err.Error())
+	}
+	return user,nil
+}
+
 func (u *users) List(ctx context.Context, limit int64,offset int64) (*model.UserList, error) {
 	ret := &model.UserList{}
 	ol := gormutil.Unpointer(&offset, &limit)
 	where :=model.User{}
-	whereNot:=model.User{
-		IsAdmin :0,
-	}
+	//whereNot:=model.User{
+	//	IsAdmin :0,
+	//}
 	d := u.db.Where(where).
-		Not(whereNot).
+		//Not(whereNot).
 		Offset(ol.Offset).
 		Limit(ol.Limit).
 		Order("id desc").

@@ -3,6 +3,7 @@ package api_server_demo
 import (
 	"sec-kill/cache/redis"
 	"sec-kill/config"
+	"sec-kill/global"
 	genericoptions "sec-kill/pkg/options"
     genericapiserver "sec-kill/pkg/server"
 	"sec-kill/store/mysql"
@@ -82,6 +83,7 @@ func (s preparedAPIServer) Run(stopCh <-chan struct{}) error {
 }
 
 func buildGenericConfig(cfg *config.Config) (genericConfig *genericapiserver.Config, lastErr error) {
+	global.TencenSmsSetting=cfg.SmsOptions
 	genericConfig = genericapiserver.NewConfig()
 	if lastErr = cfg.GenericServerRunOptions.ApplyTo(genericConfig); lastErr != nil {
 		return

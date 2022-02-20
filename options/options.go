@@ -11,6 +11,7 @@ type Options struct {
 	InsecuresServing *genericoptions.InsecureServerOptions `json:"insecure" mapstructure:"insecure"`
 	Log *logger.Options `json:"log" mapstructure:"log"`
 	RedisOptions *genericoptions.RedisOptions `json:"redis" mapstructure:"redis"`
+	SmsOptions *genericoptions.SmsOptions `json:"sms" mapstructure:"sms"`
 }
 
 func NewOptions() *Options  {
@@ -20,6 +21,7 @@ func NewOptions() *Options  {
 		InsecuresServing: genericoptions.NewInsecureServerOptions(),
 		RedisOptions: genericoptions.NewRedisOptions(),
 		Log: logger.NewOptions(),
+		SmsOptions: genericoptions.NewSmsOptions(),
 
 	}
 	return &o
