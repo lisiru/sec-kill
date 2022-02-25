@@ -2,6 +2,7 @@ package api_server_demo
 
 import (
 	"sec-kill/cache/redis"
+	"sec-kill/controller/v1/activity"
 	"sec-kill/controller/v1/user"
 	"sec-kill/pkg/response"
 	"sec-kill/store/mysql"
@@ -40,6 +41,12 @@ func installController(g *gin.Engine) *gin.Engine {
 			userv1.GET(":name", userController.GetUser)
 			userv1.POST("/sendPhoneCode",userController.SendPhoneCode)
 			userv1.POST("/login",userController.LoginByPhoneCode)
+		}
+		activityv1:=v1.Group("/activity")
+		{
+			activityController:=activity.NewActivityController(storeInstance,cacheInstance)
+			activityv1.POST("/createActivity",activityController.CreateActivity)
+			activityv1.GET("/activityInfo",activityController.ActivityInfo)
 		}
 	}
 	return g

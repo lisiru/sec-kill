@@ -6,3 +6,8 @@ const  (
 	ErrUserPhoneCodeMiss
 	ErrUserLoginFail
 )
+
+const  (
+	ErrCreateActivityFail int = iota+110101
+	ErrActivityNotFound
+)

@@ -9,10 +9,14 @@ require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/go-redis/redis/v8 v8.11.4
+	github.com/gobuffalo/envy v1.10.1 // indirect
+	github.com/gobuffalo/packd v1.0.1 // indirect
+	github.com/golang-module/carbon v1.5.5
 	github.com/marmotedu/errors v1.0.2
 	github.com/mitchellh/mapstructure v1.4.3
 	github.com/novalagung/gubrak v1.0.0
 	github.com/pkg/errors v0.9.1
+	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/afero v1.8.1 // indirect
 	github.com/spf13/viper v1.10.1

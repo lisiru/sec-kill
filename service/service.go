@@ -6,6 +6,7 @@ import (
 
 type Service interface {
 	Users() UserService
+	Activity() ActivityService
 
 }
 
@@ -25,3 +26,8 @@ func NewService(store store.Factory,cache cache.Factory) Service {
 func (s *service) Users() UserService {
 	return newUser(s)
 }
+
+func (s *service) Activity() ActivityService  {
+	return NewActivityService(s)
+}
+
